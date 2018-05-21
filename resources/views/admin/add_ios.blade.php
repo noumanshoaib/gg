@@ -16,16 +16,17 @@
             <div class="x_panel">
               <div class="x_content">
                 <div class="col-lg-6">
-                 <form action="multiupload.php" method="post" enctype="multipart/form-data">
-                    <div class="row">
+                 <form action="{{URL('/')}}/admin/view/order/active/reporting/add/ios/{{$id}}" method="post" enctype="multipart/form-data">
+                  {{csrf_field()}}  
+                  <div class="row">
                     
                       <div class="form-group col-lg-12 col-sm-12 col-md-12">
                       <label>Week Name</label>
-                          <input type="text" class="form-control">
+                          <input name="week_name" type="text" class="form-control">
                       </div>
                       <div class="form-group col-lg-12 col-sm-12 col-md-12">
                       <label>Requirments </label>
-                         <textarea class="form-control" rows="9" id="description" placeholder="Enter Your Message" pattern="[a-zA-Z0-9\s]+" maxlength="500"></textarea>
+                         <textarea name="requirements" class="form-control" rows="9" id="description" placeholder="Enter Your Message" pattern="[a-zA-Z0-9\s]+" maxlength="500"></textarea>
                       </div>
                       <div class="row" id="image_preview"></div><br>
                       <div class="col-md-6">

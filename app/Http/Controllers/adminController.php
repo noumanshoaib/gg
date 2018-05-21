@@ -146,8 +146,10 @@ $request->session()->put('type','admin');
     {
         $ui = order_ui_report::all()->where('order_id',$id);
         $web = order_web_report::all()->where('order_id',$id);
+        $and = order_android_report::all()->where('order_id',$id);
+        $ios = order_ios_report::all()->where('order_id',$id);
        
-        return view('admin.order_reporting',compact('id','ui','web'));
+        return view('admin.order_reporting',compact('id','ui','web','and','ios'));
     }
 
     public function add_ui_reporting_view($id)
@@ -196,9 +198,27 @@ $request->session()->put('type','admin');
     {
         return view('admin.add_android',compact('id'));
     }
+    public function add_android_reporting($id,Request $request)
+    {
+        $and = new order_android_report();
+        $and->week_name = $request->input('week_name');
+        $and->order_id = $id;
+        $and->requirements = $request->input('requirements');
+        $and->save();
+        return redirect('/admin/view/order/active/reporting/'.$id);
+    }
     public function add_ios_reporting_view($id)
     {
         return view('admin.add_ios',compact('id'));
+    }
+    public function add_ios_reporting($id,Request $request)
+    {
+        $ios = new order_ios_report();
+        $ios->week_name = $request->input('week_name');
+        $ios->order_id = $id;
+        $ios->requirements = $request->input('requirements');
+        $ios->save();
+        return redirect('/admin/view/order/active/reporting/'.$id);
     }
 
 

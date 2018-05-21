@@ -50,7 +50,22 @@
                           </div>
                         </div>
                         <div class="member-left-side">
-                          {{$webs->requirements}}
+                            @php
+                            $str = $webs->requirements;
+             $tok = strtok($str, "\n");
+             $url = URL("/");
+             $skillset ="<li><img src='".$url."/images/li-img.jpg' alt='img'>".$tok."</li>";
+             while ($tok !== false) {
+             
+             $tok = strtok("\n");
+             
+             if(is_string($tok))
+             $skillset= $skillset."<li><img src='".$url."/images/li-img.jpg' alt='img'>".$tok."</li>";
+             }
+             echo $skillset;
+             
+                           @endphp
+                          
                          </div>
                       </div>
                       @endforeach
@@ -62,48 +77,36 @@
                       </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
-                      <div class="col-lg-6">
-                        <div class="page-title">
-                          <div class="title_left">
-                            <h3>Week One</h3>
+                        @if(count($and)>0)
+                        @foreach($and as $ands)
+                        <div class="col-lg-6">
+                          <div class="page-title">
+                            <div class="title_left">
+                              <h3>{{$ands->week_name}}</h3>
+                            </div>
                           </div>
+                          <div class="member-left-side">
+                              @php
+                              $str = $ands->requirements;
+               $tok = strtok($str, "\n");
+               $url = URL("/");
+               $skillset ="<li><img src='".$url."/images/li-img.jpg' alt='img'>".$tok."</li>";
+               while ($tok !== false) {
+               
+               $tok = strtok("\n");
+               
+               if(is_string($tok))
+               $skillset= $skillset."<li><img src='".$url."/images/li-img.jpg' alt='img'>".$tok."</li>";
+               }
+               echo $skillset;
+               
+                             @endphp
+                            
+                           </div>
                         </div>
-                        <div class="member-left-side">
-                          <div class="member-email clearfix"> <b>Order ID</b> <span>1</span> </div>
-                          <div class="member-email clearfix"> <b>Product Name</b> <span>Green Grapez</span> </div>
-                          <div class="member-email clearfix"> <b>Price</b> <span>500$</span> </div>
-                          <div class="member-email clearfix"> <b>First Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/03/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Second Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/04/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Status</b> <span>
-                            <label class="label label-info">New</label>
-                            </span> </div>
-                          <div class="member-email clearfix"> <b>Requirments</b> <span>Nae Pta</span> </div>
-                          <div class="member-email clearfix"> <b>Additional Requirments</b> <span>Phali Pta nae dsra kha sy pta hn ge</span> </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="page-title">
-                          <div class="title_left">
-                            <h3>Week Two</h3>
-                          </div>
-                        </div>
-                        <div class="member-left-side">
-                          <div class="member-email clearfix"> <b>Order ID</b> <span>1</span> </div>
-                          <div class="member-email clearfix"> <b>Product Name</b> <span>Green Grapez</span> </div>
-                          <div class="member-email clearfix"> <b>Price</b> <span>500$</span> </div>
-                          <div class="member-email clearfix"> <b>First Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/03/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Second Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/04/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Status</b> <span>
-                            <label class="label label-info">New</label>
-                            </span> </div>
-                          <div class="member-email clearfix"> <b>Requirments</b> <span>Nae Pta</span> </div>
-                          <div class="member-email clearfix"> <b>Additional Requirments</b> <span>Phali Pta nae dsra kha sy pta hn ge</span> </div>
-                        </div>
-                      </div>
+                        @endforeach
+                        @endif
+                      
                       <div class="row">
                         <div class="col-lg-12">
                           <div class="x_content"> <a href="{{URL('/')}}/admin/view/order/active/reporting/add/android/{{$id}}" class="btn btn-round btn-success">Add Android</a> </div>
@@ -111,48 +114,36 @@
                       </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                      <div class="col-lg-6">
-                        <div class="page-title">
-                          <div class="title_left">
-                            <h3>Week One</h3>
+                        @if(count($ios)>0)
+                        @foreach($ios as $io)
+                        <div class="col-lg-6">
+                          <div class="page-title">
+                            <div class="title_left">
+                              <h3>{{$io->week_name}}</h3>
+                            </div>
                           </div>
+                          <div class="member-left-side">
+                              @php
+                              $str = $io->requirements;
+               $tok = strtok($str, "\n");
+               $url = URL("/");
+               $skillset ="<li><img src='".$url."/images/li-img.jpg' alt='img'>".$tok."</li>";
+               while ($tok !== false) {
+               
+               $tok = strtok("\n");
+               
+               if(is_string($tok))
+               $skillset= $skillset."<li><img src='".$url."/images/li-img.jpg' alt='img'>".$tok."</li>";
+               }
+               echo $skillset;
+               
+                             @endphp
+                            
+                           </div>
                         </div>
-                        <div class="member-left-side">
-                          <div class="member-email clearfix"> <b>Order ID</b> <span>1</span> </div>
-                          <div class="member-email clearfix"> <b>Product Name</b> <span>Green Grapez</span> </div>
-                          <div class="member-email clearfix"> <b>Price</b> <span>500$</span> </div>
-                          <div class="member-email clearfix"> <b>First Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/03/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Second Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/04/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Status</b> <span>
-                            <label class="label label-info">New</label>
-                            </span> </div>
-                          <div class="member-email clearfix"> <b>Requirments</b> <span>Nae Pta</span> </div>
-                          <div class="member-email clearfix"> <b>Additional Requirments</b> <span>Phali Pta nae dsra kha sy pta hn ge</span> </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="page-title">
-                          <div class="title_left">
-                            <h3>Week Two</h3>
-                          </div>
-                        </div>
-                        <div class="member-left-side">
-                          <div class="member-email clearfix"> <b>Order ID</b> <span>1</span> </div>
-                          <div class="member-email clearfix"> <b>Product Name</b> <span>Green Grapez</span> </div>
-                          <div class="member-email clearfix"> <b>Price</b> <span>500$</span> </div>
-                          <div class="member-email clearfix"> <b>First Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/03/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Second Installement</b> <span></span> </div>
-                          <div class="member-email clearfix"> <b>Due Date </b> <span>22/04/2018</span> </div>
-                          <div class="member-email clearfix"> <b>Status</b> <span>
-                            <label class="label label-info">New</label>
-                            </span> </div>
-                          <div class="member-email clearfix"> <b>Requirments</b> <span>Nae Pta</span> </div>
-                          <div class="member-email clearfix"> <b>Additional Requirments</b> <span>Phali Pta nae dsra kha sy pta hn ge</span> </div>
-                        </div>
-                      </div>
+                        @endforeach
+                        @endif
+                      
                       <div class="row">
                         <div class="col-lg-12">
                           <div class="x_content"> <a href="{{URL('/')}}/admin/view/order/active/reporting/add/ios/{{$id}}" class="btn btn-round btn-success">Add IOS</a> </div>
