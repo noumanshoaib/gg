@@ -19,7 +19,7 @@
                       <th>Order ID</th>
                       <th>Product Name</th>
                       <th>Product Type</th>
-                     
+                      <th>LADB PROCESS</th>
                       <th>Status</th>
                       
                       <th>Action</th>
@@ -32,10 +32,10 @@
                     <td>{{$orders->id}}</td>
                       <td>{{$orders->his_product_name}}</td>
                       <td>{{$orders->our_product_name}}</td>
-                      
-                      @if($orders->status==2)
+                      <td>{{$orders->ladb_process}}</td>
+                     
                       <td><label class="label label-info">New</label></td>
-                      @endif
+                      
                      
                     <td><a href="{{URL('/')}}/admin/view/order/new/{{$orders->id}}">view</a></td>
                     </tr>

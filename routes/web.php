@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routessss
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 
 Route::get('/', function () {
@@ -85,6 +84,19 @@ Route::get('/admin/delete/product/{id}','adminController@delete_product');
 
 
 Route::get('/admin/view/order/active','adminController@list_order_active_view');
+Route::get('/admin/view/order/active/{id}','adminController@order_active_view');
+
+
+Route::get('/admin/view/order/active/reporting/{id}','adminController@order_active_reporting');
+Route::get('/admin/view/order/active/reporting/add/ui/{id}','adminController@add_ui_reporting_view');
+Route::post('/admin/view/order/active/reporting/add/ui/{id}','adminController@add_ui_reporting');
+Route::get('/admin/view/order/active/reporting/add/web/{id}','adminController@add_web_reporting_view');
+Route::post('/admin/view/order/active/reporting/add/web/{id}','adminController@add_web_reporting');
+Route::get('/admin/view/order/active/reporting/add/ios/{id}','adminController@add_ios_reporting_view');
+Route::post('/admin/view/order/active/reporting/add/ios/{id}','adminController@add_ios_reporting');
+Route::get('/admin/view/order/active/reporting/add/android/{id}','adminController@add_android_reporting_view');
+
+
 Route::get('/admin/view/order/new','adminController@list_order_new_view');
 Route::get('/admin/view/order/new/{id}','adminController@order_new_view');
 Route::get('/admin/view/order/confirm/new/{id}','adminController@confirm_order_new');

@@ -8,6 +8,10 @@ use DB;
 use Table;
 use App\product;
 use App\order;
+use App\order_ui_report;
+use App\order_ios_report;
+use App\order_android_report;
+use App\order_web_report;
 class adminController extends Controller
 {
     public function home_view()
@@ -126,14 +130,85 @@ $request->session()->put('type','admin');
         return redirect('/admin/view/product');
     }
 
+    
     public function list_order_active_view()
     {
-        return view('admin.active_order');
+        $order = order::all()->where('status','1');
+        return view('admin.list_active_order',compact('order'));
     }
+    public function order_active_view($id)
+    {
+        $order = order::find($id);
+        return view('admin.view_active_order',compact('order'));
+    }
+
+    public function order_active_reporting($id)
+    {
+        $ui = order_ui_report::all()->where('order_id',$id);
+        $web = order_web_report::all()->where('order_id',$id);
+       
+        return view('admin.order_reporting',compact('id','ui','web'));
+    }
+
+    public function add_ui_reporting_view($id)
+    {
+        return view('admin.add_ui',compact('id'));
+    }
+
+    public function add_ui_reporting($id,Request $request)
+    {
+        if($request->hasfile('images'))
+        {
+            foreach($request->file('images') as $image)
+            {
+                $uniqueFileName = uniqid() . $image->getClientOriginalName();
+            
+                $input['imagename'] = time().'.'.strtolower($image->getClientOriginalExtension());
+            
+               $image->storeAs('public/images',$uniqueFileName);
+                $thumbnail=$uniqueFileName; 
+
+                $ui = new order_ui_report();
+                $ui->order_id = $id;
+                $ui->file = $thumbnail;
+                $ui->save();
+            }
+        }
+
+
+        return redirect('/admin/view/order/active/reporting/'.$id);
+    }
+
+    public function add_web_reporting_view($id)
+    {
+        return view('admin.add_web',compact('id'));
+    }
+    public function add_web_reporting($id,Request $request)
+    {
+        $web = new order_web_report();
+        $web->week_name = $request->input('week_name');
+        $web->order_id = $id;
+        $web->requirements = $request->input('requirements');
+        $web->save();
+        return redirect('/admin/view/order/active/reporting/'.$id);
+    }
+    public function add_android_reporting_view($id)
+    {
+        return view('admin.add_android',compact('id'));
+    }
+    public function add_ios_reporting_view($id)
+    {
+        return view('admin.add_ios',compact('id'));
+    }
+
+
+
+
+
     public function list_order_new_view()
     {
-       $order = order::all();
-        return view('admin.new_order',compact('order'));
+       $order = order::all()->where('status','2');
+        return view('admin.list_new_order',compact('order'));
     }
     public function order_new_view($id)
     {
@@ -147,6 +222,7 @@ $request->session()->put('type','admin');
         $order->save();
         return redirect('/admin/view/order/active');
     }
+
     public function list_order_completed_view()
     {
         return view('admin.completed_order');
