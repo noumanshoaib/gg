@@ -23,7 +23,7 @@
                       <th>Price</th>
                       <th>Status</th>
                       <th>Expected Date</th>
-                      <th>Action</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
