@@ -27,8 +27,8 @@
                         @if(count($ui)>0)
                         @foreach($ui as $uir)
                         <div class="col-lg-4">
-                        <div class="product"> <img src="{{URL('/')}}/storage/images/{{$uir->file}}" alt="product">
-                            <h1> test </h1>
+                        <div class="product"> <a href="URL('/')/storage/images/{{$uir->file}}" download><img src="{{URL('/')}}/storage/images/{{$uir->file}}" alt="product"></a>
+                            <h1> UI Screen </h1>
                           </div>
                         </div>
                         @endforeach

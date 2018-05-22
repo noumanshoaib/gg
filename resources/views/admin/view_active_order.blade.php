@@ -57,7 +57,7 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-          <div class="x_content"> <a href="{{URL('/')}}/admin/view/order/active/reporting/{{$order->id}}" class="btn btn-round btn-success">View Reporting</a> <a href="update_order.html" class="btn btn-round btn-success">Update Order</a> <a href="refund_order.html" class="btn btn-round btn-success">Refund</a> <a href="active_order.html" class="btn btn-round btn-success">Cancel</a> </div>
+          <div class="x_content"> <a href="{{URL('/')}}/admin/view/order/active/reporting/{{$order->id}}" class="btn btn-round btn-success">View Reporting</a> <a href="{{URL('/')}}/admin/view/order/active/update/{{$order->id}}" class="btn btn-round btn-success">Update Order</a> <a href="refund_order.html" class="btn btn-round btn-success">Refund</a> <a href="active_order.html" class="btn btn-round btn-success">Cancel</a> </div>
           </div>
         </div>
       </div>

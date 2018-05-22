@@ -96,7 +96,8 @@ Route::get('/admin/view/order/active/reporting/add/ios/{id}','adminController@ad
 Route::post('/admin/view/order/active/reporting/add/ios/{id}','adminController@add_ios_reporting');
 Route::get('/admin/view/order/active/reporting/add/android/{id}','adminController@add_android_reporting_view');
 Route::post('/admin/view/order/active/reporting/add/android/{id}','adminController@add_android_reporting');
-
+Route::get('/admin/view/order/active/update/{id}','adminController@update_order_view');
+Route::post('/admin/view/order/active/update/{id}','adminController@update_order');
 
 Route::get('/admin/view/order/new','adminController@list_order_new_view');
 Route::get('/admin/view/order/new/{id}','adminController@order_new_view');

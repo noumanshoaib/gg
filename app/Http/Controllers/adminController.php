@@ -243,16 +243,35 @@ $request->session()->put('type','admin');
         return redirect('/admin/view/order/active');
     }
 
+    public function update_order_view($id)
+    {
+        return view('admin.active_update_order',compact('id'));
+    }
+
+    public function update_order($id,Request $request)
+    {
+        $orders = order::find($id);
+        $orders->second_installment = $request->input('si');
+        $orders->d2 = $request->input('d1');
+        $orders->expected_delivery = $request->input('ed');
+        $orders->additional_requirements = $orders->additional_requirements ."\n". $request->input('requirements');
+        $orders->save();
+        return redirect()->back();
+    }
+
     public function list_order_completed_view()
     {
-        return view('admin.completed_order');
+        $order = order::all()->where('status','3');
+        return view('admin.completed_order',compact('order'));
     }
     public function list_order_cancelled_view()
     {
-        return view('admin.cancel_order');
+        $order = order::all()->where('status','4');
+        return view('admin.cancel_order',compact('order'));
     }
     public function list_order_refunded_view()
     {
-        return view('admin.refunded_order');
+        $order = order::all()->where('status','5');
+        return view('admin.refunded_order',compact('order'));
     }
 }
