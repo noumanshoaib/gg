@@ -16,9 +16,10 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                   <thead>
                     <tr>
-                      <th>Product ID</th>
+                      <th>Order ID</th>
                       <th>Product Name</th>
-                      <th>Product Type</th>
+                      <th>Our Product Name</th>
+                      <th>LADB PROCESS</th>
                       <th>Price</th>
                       <th>Status</th>
                       <th>Expected Date</th>
@@ -26,15 +27,20 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @if(count($order)>0)
+                    @foreach($order as $orders)
                     <tr>
-                      <td>01</td>
-                      <td>Green Grapez</td>
-                      <td>LADB WEB</td>
-                      <td>400$</td>
-                      <td><label class="label label-success">Complete</label></td>
-                      <td>2011/04/25</td>
-                      <td><a href="view_complete_order.html">view</a></td>
+                    <td>{{$orders->id}}</td>
+                      <td>{{$orders->his_product_name}}</td>
+                      <td>{{$orders->our_product_name}}</td>
+                      <td>{{$orders->ladb_process}}</td>
+                      <td>{{$orders->total}}</td>
+                      <td><label class="label label-success">Active</label></td>
+                    <td>{{$orders->expected_delivery}}</td>
+                    <td><a href="{{URL('/')}}/admin/view/order/active/{{$orders->id}}">view</a></td>
                     </tr>
+                    @endforeach
+                    @endif
                   </tbody>
                 </table>
               </div>
